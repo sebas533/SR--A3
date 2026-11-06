@@ -31,6 +31,14 @@ El siguiente diagrama representa visualmente la estructura de la red, incluyendo
 
 Se diseñó e implementó una topología de red para representar la comunicación entre los diferentes dispositivos de infraestructura. Se estableció un esquema de direccionamiento IP y una distribución lógica de la red para permitir la segmentación del tráfico y la comunicación entre las distintas VLANs.
 
+### Tabla de Direccionamiento IP
+
+| Dispositivo | Interfaz | Dirección IP | Máscara de Red | Default Gateway | Servicio / Rol |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **R1-2168** | FastEthernet0/0 | `192.168.111.254` | `255.255.255.0` (`/24`) | N/A | Gateway de la Red (Default Router DHCP) |
+| **SW-2168** (Switch) | Vlan1 | `192.168.111.2` | `255.255.255.0` (`/24`) | `192.168.111.254` | Interfaz de Gestión (SVI)[cite: 4] |
+| **Pool DHCP** (`LAN-ZABBIX`) | Subred | `192.168.111.0` | `255.255.255.0` (`/24`) | `192.168.111.254` | Rango de red asignable por DHCP (DNS: `8.8.8.8`) |
+| **ZABBIX-SV** | Ethernet | `192.168.111.100` - `200` | `255.255.255.0` (`/24`) | `192.168.111.254` | Servidor Zabbix (Asignado por DHCP)* |
 ---
 
 ## 2. Configuración de VLANs y Puertos
