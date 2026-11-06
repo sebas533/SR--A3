@@ -1,0 +1,62 @@
+SV-ZABBIX
+-----------------------------------------------------------------------------------------
+#!/usr/bin/env bash
+# Registro reproducible de paquetes/comandos utilizados en Ubuntu 26.04.1 LTS.
+# Requiere acceso a Internet; NO ejecuta creación de usuarios ni contraseñas de producción.
+set -euo pipefail
+sudo apt update
+wget -q https://repo.zabbix.com/zabbix/7.4/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu26.04_all.deb
+sudo dpkg -i zabbix-release_latest+ubuntu26.04_all.deb
+sudo apt update
+sudo apt install -y mysql-server zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2
+sudo a2enmod proxy proxy_fcgi setenvif
+sudo a2enconf php8.5-fpm
+sudo systemctl enable --now mysql zabbix-server zabbix-agent2 php8.5-fpm
+sudo apache2ctl configtest
+sudo systemctl enable --now apache2
+# Base de datos y DBPassword se crearon manualmente; credenciales no se publican.
+-----------------------------------------------------------------------------------------
+
+ROUTER
+-----------------------------------------------------------------------------------------
+conf t
+interface FastEthernet0/0
+ ip address 192.168.111.1 255.255.255.0
+ no shutdown
+exit
+ip dhcp excluded-address 192.168.111.1 192.168.111.99
+ip dhcp excluded-address 192.168.111.201 192.168.111.254
+ip dhcp pool LAN-ZABBIX
+ network 192.168.111.0 255.255.255.0
+ default-router 192.168.111.254
+ dns-server 8.8.8.8
+exit
+snmp-server community ZABBIX-RO RO
+snmp-server location LAB-GNS3
+snmp-server contact ADMIN-2168
+end
+write memory
+-----------------------------------------------------------------------------------------
+SW
+-----------------------------------------------------------------------------------------
+! Fragmentos funcionales utilizados en el laboratorio — Switch-2168
+conf t
+interface Vlan1
+ ip address 192.168.111.2 255.255.255.0
+ no shutdown
+exit
+ip default-gateway 192.168.111.254
+interface GigabitEthernet0/0
+ switchport mode access
+exit
+interface GigabitEthernet0/1
+ switchport mode access
+exit
+interface GigabitEthernet1/3
+ switchport mode access
+exit
+snmp-server community ZABBIX-RO RO
+snmp-server location LAB-GNS3
+snmp-server contact ADMIN-2168
+end
+write memory
