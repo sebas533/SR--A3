@@ -1,107 +1,187 @@
 # Asignación 3: Configuración de Red, VLANs, DHCP, SNMP y Monitoreo con Zabbix
 
-Este repositorio documenta el desarrollo completo de la **Asignación 3**, la cual abarca el diseño e implementación de una topología de red avanzada, segmentación de tráfico mediante VLANs, servicio de asignación dinámica de direcciones IP (DHCP), configuración de agentes de monitoreo remoto (SNMP) y la puesta en marcha de un servidor centralizado con Zabbix.
+Este repositorio documenta el desarrollo de la **Asignación 3**, enfocada en el diseño e implementación de una infraestructura de red, segmentación mediante VLANs, configuración del servicio DHCP, administración mediante SNMP y monitoreo centralizado utilizando Zabbix.
+
+El proyecto incluye las configuraciones realizadas, evidencias de implementación, diagrama de infraestructura y un mapa interactivo para facilitar la visualización de la topología.
 
 ---
 
 ## 📹 Video Explicativo de la Práctica
-Puedes visualizar la explicación detallada del desarrollo y funcionamiento de toda la práctica en el siguiente enlace de YouTube:
-* **Enlace del Video:** [Ver video en YouTube](https://youtu.be/lfPVDD8CJ9c)
+
+Puedes visualizar la explicación del desarrollo y funcionamiento de la práctica en el siguiente enlace:
+
+- **[Ver video explicativo en YouTube](https://youtu.be/lfPVDD8CJ9c)**
 
 ---
 
-## 1. Topología de la Red y Direccionamiento IP
+## 1. Topología de Red e Infraestructura
 
-### 🗺️ Mapa Interactivo de la Topología y Direccionamiento
-Puedes explorar el diagrama interactivo de la red, consultar las tablas de enrutamiento y verificar el esquema de direccionamiento IP directamente desde nuestro visor en línea alojado en GitHub:
-* **[Ver Mapa Interactivo de la Topología en GitHub](https://github.com/aalevante06/ASIGNACION-3)** *(Navega por los submódulos o abre el archivo de diseño interactivo del proyecto)*.
+### 🗺️ Mapa Interactivo de la Topología
 
-* **Topología General (Vista Estática):**
-  ![Topología de Red](/Imagenes/Topologia.png)
+Se incorpora un visor interactivo para consultar la infraestructura de red, explorar sus dispositivos y visualizar las conexiones entre los diferentes elementos de la topología.
 
-* **Descripción de la actividad:** 
-  Se diseñó y levantó la topología de red simulando la interconexión entre pasarelas de red, switches de distribución y servidores de servicios. Se estableció la matriz de direccionamiento IP para evitar solapamientos de subredes entre las distintas áreas de la organización.
+- **[🌐 Abrir Mapa Interactivo](./Mapa-Interactivo/index.html)**
+
+### 🖧 Diagrama General de la Infraestructura
+
+El siguiente diagrama representa visualmente la estructura de la red, incluyendo los dispositivos de interconexión, switches y servidores involucrados en la práctica.
+
+![Diagrama General de la Topología](./Diagrama/Topologia.png)
+
+### Descripción
+
+Se diseñó e implementó una topología de red para representar la comunicación entre los diferentes dispositivos de infraestructura. Se estableció un esquema de direccionamiento IP y una distribución lógica de la red para permitir la segmentación del tráfico y la comunicación entre las distintas VLANs.
 
 ---
 
 ## 2. Configuración de VLANs y Puertos
 
-* **Creación y Configuración de VLANs:**
-  ![Configuración de VLANs](/Imagenes/vlan.png)
-  * *Qué se hizo:* Se crearon las redes virtuales (VLANs) necesarias en los switches para aislar el tráfico de broadcast por departamentos, asignándoles nombres descriptivos y asociándolas al dominio de conmutación.
+### Creación y configuración de VLANs
 
-* **Ejecución y Verificación de Configuración en Interfaces (VLAN):**
-  ![Configuración en Interfaces VLAN](/Imagenes/config%20run%20int%20vlan.png)
-  * *Qué se hizo:* Se verificaron los comandos de ejecución rápida (`running-config`) en las interfaces troncales y de acceso para asegurar que el encapsulamiento 802.1Q operara correctamente.
+![Configuración de VLANs](./Imagenes/vlan.png)
 
-* **Estado de la Interfaz F0 (FastEthernet):**
-  ![Interfaz F0](/Imagenes/interfaz%20f0.png)
-  * *Qué se hizo:* Se comprobó el estado operativo y administrativo de la interfaz FastEthernet principal, validando su velocidad, modo dúplex y estado de enlace (`up/up`).
+**Qué se realizó:** Se crearon las VLANs necesarias para segmentar la red y separar el tráfico de acuerdo con la distribución establecida en la práctica.
 
-* **Verificación de Interfaces del Switch (`show ip int brief`):**
-  ![Show IP Interface Brief Switch](/Imagenes/show%20ip%20int%20brief%20sw.png)
-  * *Qué se hizo:* Se ejecutó el comando de resumen de interfaces en el switch para corroborar qué puertos se encuentran activos y qué VLAN nativa o de acceso tienen asignada.
+### Configuración de interfaces VLAN
 
-* **Verificación de Interfaces del Router (`SW INT BRIEF R1`):**
-  ![Switch/Router Interface Brief R1](/Imagenes/SW%20INT%20BRIEF%20R1.png)
-  * *Qué se hizo:* Se validó el estado de las subinterfaces y enlaces físicos en el enrutador principal (`R1`), asegurando la correcta comunicación inter-VLAN (Router-on-a-Stick).
+![Configuración de interfaces VLAN](./Imagenes/config%20run%20int%20vlan.png)
+
+**Qué se realizó:** Se verificaron las configuraciones de las interfaces, incluyendo los puertos de acceso y los enlaces troncales, para garantizar la correcta comunicación entre los dispositivos.
+
+### Estado de la interfaz FastEthernet
+
+![Interfaz F0](./Imagenes/interfaz%20f0.png)
+
+**Qué se realizó:** Se comprobó el estado operativo de la interfaz FastEthernet, verificando su disponibilidad y estado de conexión.
+
+### Verificación de interfaces del switch
+
+![Show IP Interface Brief Switch](./Imagenes/show%20ip%20int%20brief%20sw.png)
+
+**Qué se realizó:** Se utilizó el comando `show ip interface brief` para comprobar el estado de las interfaces del switch y verificar su funcionamiento.
+
+### Verificación de interfaces del router R1
+
+![Interfaces R1](./Imagenes/SW%20INT%20BRIEF%20R1.png)
+
+**Qué se realizó:** Se verificaron las interfaces y subinterfaces del router R1 para comprobar el funcionamiento de los enlaces y el enrutamiento entre VLANs.
 
 ---
 
 ## 3. Configuración del Servicio DHCP
 
-* **Configuración DHCP en Router (Parte 1):**
-  ![R1 DHCP](/Imagenes/r1%20dhcp.png)
-  * *Qué se hizo:* Se configuró el pool de direcciones IP dinámicas en el enrutador, especificando la red base, la máscara de subred y la puerta de enlace predeterminada (`default-router`).
+### Configuración DHCP en R1
 
-* **Configuración DHCP en Router (Parte 2):**
-  ![DHCP R1 Parte 2](/Imagenes/dhcp2%20r1.png)
-  * *Qué se hizo:* Se definieron las exclusiones de direcciones IP estáticas (rangos reservados para servidores y pasarelas) y se ajustaron los parámetros de tiempo de concesión (*lease time*) y servidores DNS.
+![Configuración DHCP R1](./Imagenes/r1%20dhcp.png)
+
+**Qué se realizó:** Se configuraron los pools DHCP para permitir la asignación automática de direcciones IP a los dispositivos de la red, estableciendo los parámetros correspondientes a cada segmento.
+
+### Configuración adicional DHCP
+
+![DHCP R1 Parte 2](./Imagenes/dhcp2%20r1.png)
+
+**Qué se realizó:** Se configuraron las exclusiones de direcciones IP y los parámetros necesarios para administrar correctamente la asignación de direcciones dinámicas, incluyendo las puertas de enlace y los servidores DNS.
 
 ---
 
 ## 4. Configuración del Protocolo SNMP
 
-* **Configuración de Comunidad SNMP en Switch:**
-  ![SNMP Comunidad Switch](/Imagenes/snmp%20comunnnity%20sw.png)
-  * *Qué se hizo:* Se estableció la cadena de comunidad SNMP (tanto para lectura como para escritura según fuera necesario) para autenticar las peticiones del servidor de monitoreo hacia el switch.
+### Configuración de comunidad SNMP en el switch
 
-* **Configuración de Permisos de Solo Lectura (Switch):**
-  ![SNMP Solo Lectura Switch](/Imagenes/snmp%20solo%20lectura%20sw.png)
-  * *Qué se hizo:* Se restringieron los permisos del protocolo SNMP a modo de solo lectura (`ro-community`) en el switch para salvaguardar la seguridad de la infraestructura ante modificaciones no autorizadas.
+![SNMP Comunidad Switch](./Imagenes/snmp%20comunnnity%20sw.png)
 
-* **Configuración General de Solo Lectura:**
-  ![SNMP Solo Lectura General](/Imagenes/snmp%20solo%20lectura.png)
-  * *Qué se hizo:* Se aplicaron políticas globales de seguridad SNMP en los dispositivos de borde para limitar las IPs de origen que pueden consultar las métricas del equipo.
+**Qué se realizó:** Se configuró la comunidad SNMP para permitir la comunicación entre los dispositivos de red y el servidor encargado del monitoreo.
 
-* **Comandos de Verificación SNMP:**
-  ![Show SNMP](/Imagenes/show%20snmp.png)
-  * *Qué se hizo:* Se utilizó el comando de diagnóstico para verificar que el motor SNMP estuviera activo, mostrando las estadísticas de paquetes procesados y las comunidades habilitadas.
+### Configuración SNMP de solo lectura
 
-* **Verificación de Parámetros SNMP (CM):**
-  ![Show SNMP CM](/Imagenes/show%20snp%20cm.png)
-  * *Qué se hizo:* Se comprobaron los contadores de gestión y las vistas de objetos (MIBs) accesibles mediante la consola de comandos.
+![SNMP Solo Lectura Switch](./Imagenes/snmp%20solo%20lectura%20sw.png)
+
+**Qué se realizó:** Se establecieron permisos de solo lectura para consultar información del dispositivo sin permitir modificaciones mediante SNMP.
+
+### Configuración general SNMP
+
+![SNMP Solo Lectura General](./Imagenes/snmp%20solo%20lectura.png)
+
+**Qué se realizó:** Se aplicaron configuraciones de acceso SNMP para permitir la consulta de información de administración y supervisión de los dispositivos.
+
+### Comandos de verificación SNMP
+
+![Show SNMP](./Imagenes/show%20snmp.png)
+
+**Qué se realizó:** Se ejecutaron comandos de verificación para comprobar el funcionamiento del protocolo SNMP y consultar sus estadísticas.
+
+### Verificación de parámetros SNMP
+
+![Show SNMP CM](./Imagenes/show%20snp%20cm.png)
+
+**Qué se realizó:** Se verificaron los parámetros de administración y la información disponible mediante el protocolo SNMP.
 
 ---
 
-## 5. Servidor Zabbix y Monitoreo
+## 5. Servidor Zabbix y Monitoreo de Red
 
-* **Verificación de Red y Enrutamiento en Servidor Zabbix:**
-  ![SV Zabbix IP Route](/Imagenes/SV%20ZABBIX%20ip%20route%20y%20-4%20addr%20show%20wns3.png)
-  * *Qué se hizo:* Se validó la configuración de red en el sistema operativo del servidor Zabbix mediante comandos de rutas IP e inspección de interfaces de red (`wns3`), garantizando conectividad hacia toda la topología.
+### Configuración de red del servidor Zabbix
 
-* **Listado y Estado de Hosts Registrados en Zabbix:**
-  ![Hosts Zabbix](/Imagenes/Hosts%20zabbix.png)
-  * *Qué se hizo:* Se dio de alta cada dispositivo de red (routers y switches) en la interfaz web de Zabbix, asociándoles las plantillas (*templates*) predeterminadas de monitoreo por ICMP y SNMP.
+![Servidor Zabbix](./Imagenes/SV%20ZABBIX%20ip%20route%20y%20-4%20addr%20show%20wns3.png)
 
-* **Panel de Control de Zabbix (Matrícula 2168):**
-  ![Panel Zabbix Matrícula 2168](/Imagenes/Panel%20zabbix%20matricula%202168.png)
-  * *Qué se hizo:* Se personalizó el dashboard principal del sistema de monitoreo para reflejar el estado general de los elementos correspondientes a la matrícula de evaluación (2168).
+**Qué se realizó:** Se verificó la configuración de red del servidor Zabbix mediante comandos de direccionamiento IP y tablas de enrutamiento para comprobar su conectividad.
 
-* **Métricas y Rendimiento del Router (R1):**
-  ![Métricas del R1](/Imagenes/METRICAS%20DEL%20R1.png)
-  * *Qué se hizo:* Se analizaron las gráficas en tiempo real de uso de CPU, consumo de memoria y tráfico por interfaces correspondientes al enrutador `R1`.
+### Hosts registrados en Zabbix
 
-* **Métricas SNMP del Switch:**
-  ![Métricas SNMP del Switch](/Imagenes/metricas%20snmp%20del%20SW.png)
-  * *Qué se hizo:* Se comprobaron las gráficas de estado de puertos, errores de trama y tráfico pasante recolectadas exitosamente por Zabbix a través de las consultas SNMP realizadas al switch.
+![Hosts Zabbix](./Imagenes/Hosts%20zabbix.png)
+
+**Qué se realizó:** Se registraron los dispositivos de infraestructura en la plataforma Zabbix, configurando los parámetros necesarios para su supervisión mediante ICMP y SNMP.
+
+### Dashboard de Zabbix
+
+![Panel Zabbix](./Imagenes/Panel%20zabbix%20matricula%202168.png)
+
+**Qué se realizó:** Se organizó el panel principal de Zabbix para visualizar el estado general de los dispositivos registrados y facilitar el seguimiento de la infraestructura.
+
+### Métricas y rendimiento del router R1
+
+![Métricas del R1](./Imagenes/METRICAS%20DEL%20R1.png)
+
+**Qué se realizó:** Se visualizaron las métricas de rendimiento del router R1, incluyendo información sobre el tráfico de red y los recursos del dispositivo.
+
+### Métricas SNMP del switch
+
+![Métricas SNMP Switch](./Imagenes/metricas%20snmp%20del%20SW.png)
+
+**Qué se realizó:** Se verificaron las métricas recopiladas mediante SNMP para supervisar el comportamiento de las interfaces y el tráfico del switch.
+
+---
+
+## 6. Herramientas y Tecnologías Utilizadas
+
+- **Routers y switches:** Configuración y administración de dispositivos de red.
+- **VLAN:** Segmentación lógica de la infraestructura.
+- **DHCP:** Asignación dinámica de direcciones IP.
+- **SNMP:** Protocolo de administración y supervisión de dispositivos.
+- **Zabbix:** Plataforma centralizada de monitoreo.
+- **Linux:** Administración y configuración del servidor Zabbix.
+- **GitHub:** Documentación y almacenamiento del proyecto.
+
+---
+
+## 7. Objetivos Alcanzados
+
+- Diseño e implementación de una topología de red.
+- Segmentación de la infraestructura mediante VLANs.
+- Configuración del servicio DHCP.
+- Implementación del protocolo SNMP.
+- Integración de dispositivos de red con Zabbix.
+- Supervisión del estado y rendimiento de routers y switches.
+- Documentación de las configuraciones y evidencias del proyecto.
+
+---
+
+## 8. Conclusión
+
+Con esta práctica pude trabajar con diferentes tecnologías de administración y monitoreo de redes, comprendiendo cómo se relacionan las VLANs, DHCP y SNMP dentro de una infraestructura. También pude implementar Zabbix para supervisar los dispositivos y visualizar sus métricas, lo que me permitió comprender mejor la importancia de mantener una red organizada, funcional y monitoreada.
+
+---
+
+**Proyecto académico – Asignación 3**  
+**Repositorio:** [SR--A3](https://github.com/sebas533/SR--A3)  
+**Autor:** Sebastian Roble
