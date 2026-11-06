@@ -18,7 +18,7 @@ Puedes visualizar la explicación del desarrollo y funcionamiento de la práctic
 
 ### 🗺️ Topología de Red Interactiva
 
-
+![la Topología](Imagenes/Topologia.png)
 
 
 ### 🖧 Diagrama General de la Infraestructura
