@@ -18,24 +18,6 @@ Puedes visualizar la explicación del desarrollo y funcionamiento de la práctic
 
 ### 🗺️ Topología de Red Interactiva
 
-```mermaid
-graph TD
-    %% Estilos de Nodos
-    classDef router fill:#2b3a4a,stroke:#4a90e2,stroke-width:2px,color:#fff;
-    classDef switch fill:#1b4332,stroke:#2ec4b6,stroke-width:2px,color:#fff;
-    classDef server fill:#4a154b,stroke:#a855f7,stroke-width:2px,color:#fff;
-    classDef cloud fill:#334155,stroke:#94a3b8,stroke-width:2px,color:#fff;
-
-    %% Dispositivos de la Red
-    R1["🌐 R1-2168<br/>Fa0/0 • 192.168.111.254/24<br/>DHCP Server / SNMP RO"]:::router
-    SW["🔀 SW-2168<br/>VLAN 1 • 192.168.111.2/24<br/>SNMP RO"]:::switch
-    ZABBIX["🖥️ ZABBIX-SV<br/>DHCP (192.168.111.x)<br/>Zabbix Server / SNMP Manager"]:::server
-    CLOUD["☁️ LANUBESITA<br/>Conexión LAN / Externa"]:::cloud
-
-    %% Enlaces e Interconexiones
-    R1 <== "Fa0/0 ↔ Gi0/0" ==> SW
-    SW <== "Gi0/1 ↔ eth0 (DHCP)" ==> ZABBIX
-    SW <== "Gi0/2 ↔ eth0" ==> CLOUD
 
 ### 🖧 Diagrama General de la Infraestructura
 
