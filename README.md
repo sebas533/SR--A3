@@ -88,8 +88,6 @@ Se diseñó e implementó una topología de red para representar la comunicació
 
 ### Configuración de comunidad SNMP en el switch
 
-![SNMP Comunidad Switch](./Imagenes/snmp%20comunnnity%20sw.png)
-
 **Qué se realizó:** Se configuró la comunidad SNMP para permitir la comunicación entre los dispositivos de red y el servidor encargado del monitoreo.
 
 ### Configuración SNMP de solo lectura
