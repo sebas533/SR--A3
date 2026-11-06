@@ -20,7 +20,7 @@ Puedes visualizar la explicación del desarrollo y funcionamiento de la práctic
 
 Se incorpora un visor interactivo para consultar la infraestructura de red, explorar sus dispositivos y visualizar las conexiones entre los diferentes elementos de la topología.
 
-- **[🌐 Abrir Mapa Interactivo](./Mapa-Interactivo/index.html)**
+- **[🌐 Abrir Mapa Interactivo](Imagenes/Topologia.png)**
 
 ### 🖧 Diagrama General de la Infraestructura
 
