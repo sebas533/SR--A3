@@ -25,7 +25,7 @@ Puedes visualizar la explicación del desarrollo y funcionamiento de la práctic
 
 El siguiente diagrama representa visualmente la estructura de la red, incluyendo los dispositivos de interconexión, switches y servidores involucrados en la práctica.
 
-![Diagrama General de la Topología](Imagenes/Topologia.png)
+![Diagrama General de la Topología](Imagenes/diagrama.jpg)
 ### Descripción
 
 Se diseñó e implementó una topología de red para representar la comunicación entre los diferentes dispositivos de infraestructura. Se estableció un esquema de direccionamiento IP y una distribución lógica de la red para permitir la segmentación del tráfico y la comunicación entre las distintas VLANs.
